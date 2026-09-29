@@ -1,0 +1,122 @@
+    1  hostnamectl
+    2  ip addr
+    3  ip route
+    4  ping -c 4 8.8.8.8
+    5  ping -c 4 8.8.8.8 > ~/ping.out
+    6  cat ping.out
+    7  ls -l ~/ping.out
+    8  sudo dnf upgrade
+    9  histoty -a
+   10  history -a
+   11  sudo reboot
+   12  history | tail
+   13  sudo dnf install nginx libcap-ng-utils
+   14  rpm -q nginx
+   15  rpm -q libcap-ng-utils
+   16  cd /tmp
+   17  pwd
+   18  dnf download tcpdump
+   19  ls -lh
+   20  rpm -K tcpdump*.rpm
+   21  sudo rpm -ivh tcdump*.rpm
+   22  sudo rpm -ivh tcdump-4.99.1-3.red80.x86_64.rpm
+   23  sudo rpm -ivh tcpdump-4.99.1-3.red80.x86_64.rpm
+   24  rpm -q tcpdump
+   25  which tcpdump
+   26  cd
+   27  dnf history > ~/dnf.out
+   28  cat ~/dnf.out
+   29  history -a
+   30  sudo poweroff
+   31  lsblk
+   32  sudo fdisk /dev/nvme0n1
+   33  lsblk
+   34  sudo mkfs.ext4 -L MEPHI_WEB /dev/nvme0n1p1
+   35  lsblk -f
+   36  sudo mkdir /mephi-web
+   37  sudo cp /etc/fstab /etc/fstab.bak
+   38  nano --version
+   39  sudo nano /etc/fstab
+   40  sudo mount -a
+   41  findmnt /mephi-web
+   42  sudo systemctl daemon-reload
+   43  sudo mount -a
+   44  findmnt /mephi-web
+   45  lsblk -f
+   46  systemctl status nginx
+   47  sudo systemctl start nginx
+   48  systemctl status nginx
+   49  systemctl enable nginx
+   50  systemctl status nginx
+   51  journalctl -u nginx -b > ~/journalctl.out
+   52  cat ~/journalctl.out
+   53  sudo groupadd developers
+   54  sudo groupadd -g 4444 curators
+   55  sudo useradd -u 5501 -m -G developers user1
+   56  sudo useradd -u 5502 -m -G developers user2
+   57  sudo useradd -u 5503 -m -G developers user3
+   58  sudo useradd -m -G curators curator1
+   59  sudo useradd -m -G curators curator2
+   60  id user1
+   61  id user2
+   62  id user3
+   63  id curator1
+   64  id curator2
+   65  getent group curators
+   66  sudo mkdir -p /data/mephi-2026
+   67  sudo chown root:developers /data/mephi-2026
+   68  sudo chmod 2770 /data/mephi-2026
+   69  sudo setfacl -m g:curators:rx /data/mephi-2026
+   70  sudo setfacl -d -m u::rwx,g::rwx,g:developers:rwx,g:curators:rx,m::rwx,o::--- /data/mephi-2026
+   71  getfacl /data/mephi-2026
+   72  ls -l /usr/sbin/tcpdump
+   73  getcap /usr/sbin/tcpdump
+   74  sudo setcap cap_net_raw,cap_net_admin=ep /usr/sbin/tcpdump
+   75  getcap /usr/sbin/tcpdump
+   76  sudo -u user1 tcpdump
+   77  getcap /usr/sbin/tcpdump > ~/getcap.out
+   78  cat ~/getcap.out
+   79  getenforce
+   80  ls -ldZ /mephi-web
+   81  grep -R "root" /etc/nginx
+   82  sudo nano /etc/nginx/nginx.conf
+   83  sudo nginx -t
+   84  command -v semanage
+   85  sudo dnf provides '*/semanage'
+   86  sudo dnf install policycoreutils-python-utils
+   87  command -v semanage
+   88  sudo semanage fcontext -a -t httpd_sys_content_t "/mephi-web(/.*)?"
+   89  sudo restorecon -Rv /mephi-web
+   90  ls -ldZ /mephi-web
+   91  sudo systemctl restart nginx
+   92  sudo systemctl status nginx
+   93  getenforce > ~/getenforce.out
+   94  cat ~/getenforce.out
+   95  history -a
+   96  cat /etc/pam.d/login
+   97  grep -n "pam_access" /etc/pam.d/login
+   98  sudo cp /etc/pam.d/login /etc/pam.d/login.bak
+   99  sudo nano /etc/pam.d/login
+  100  sudo nano /etc/security/access.conf
+  101  grep -n "pam_access" /etc/pam.d/login
+  102  tail -n 5 /etc/security/access.conf
+  103  sudo nano /etc/security/pwquality.conf
+  104  sudo nano /etc/login.defs
+  105  sudo chage -M 90 user1
+  106  sudo chage -M 90 user2
+  107  sudo chage -M 90 user3
+  108  sudo chage -M 90 curator1
+  109  sudo chage -M 90 curator2
+  110  sudo chage -M 90 andrew
+  111  sudo chage -l user1
+  112  grep -E '^[[:space:]]*minlen' /etc/security/pwquality.conf
+  113  echo 'Hello from Student: 372187 | sudo tee /mephi-web/index.html
+  114  echo 'Hello from Student: 372187' | sudo tee /mephi-web/index.html
+  115  sudo restorecon -v /mephi-web/index.html
+  116  curl http://localhost
+  117  curl http://localhost > ~/curl.out
+  118  cat ~/curl.out
+  119  stat /data/mephi-2026 > ~/stat.out
+  120  stat /mephi-web >> ~/stat.out
+  121  history -a
+  122  history > ~/history.out
